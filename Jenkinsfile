@@ -1,5 +1,7 @@
 node {
   // Mark the code checkout 'stage'....
+  def buildtag = "nginx-hello-world-${env.BUILD_NUMBER}"
+  
   stage 'Stage Checkout'
 
   // Checkout code from repository and update any submodules
@@ -12,6 +14,10 @@ node {
   echo "My branch is: ${env.BRANCH_NAME}"
 
   sh "pwd"
+  sh "ls"
+  sh "cd hello-world-nginx"
+  sh "pwd"
+  docker.build "${buildtag}"
   sh "ls"
 
   //build your gradle flavor, passes the current build number as a parameter to gradle
