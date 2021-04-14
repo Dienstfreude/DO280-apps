@@ -11,8 +11,8 @@ node {
   //branch name from Jenkins environment variables
   echo "My branch is: ${env.BRANCH_NAME}"
 
-  pwd
-  ls
+  sh "pwd"
+  sh "ls"
 
   //build your gradle flavor, passes the current build number as a parameter to gradle
  // sh "./gradlew clean assemble${flavor}Debug -PBUILD_NUMBER=${env.BUILD_NUMBER}"
