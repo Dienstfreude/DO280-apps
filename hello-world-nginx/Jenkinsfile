@@ -46,6 +46,7 @@ pipeline {
                             if (openshift.selector("service", templateName).exists()) {
                                 openshift.selector("service", templateName).delete()    
                             }
+                            echo "Deleting old configurations!"
                         }
                     }
                 } // script
@@ -57,6 +58,7 @@ pipeline {
                     openshift.withCluster() {
                         openshift.withProject() {
                             // create a new application from the templatePath
+                            echo "Creating new App"
                             openshift.newApp( '--name hello-world-nginx', 'https://github.com/Dienstfreude/DO280-apps', '--as-deployment-config', '--context-dir hello-world-nginx')
                         }
                     }
