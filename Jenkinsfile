@@ -34,4 +34,5 @@ pipeline {
   sh "ls"
   //sh "./gradlew crashlyticsUploadDistribution${flavor}Debug  -PBUILD_NUMBER=${env.BUILD_NUMBER}"
      }
+  } 
 }
