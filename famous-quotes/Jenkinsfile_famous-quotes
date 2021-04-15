@@ -35,7 +35,7 @@ pipeline {
                     openshift.withCluster() {
                         openshift.withProject() {
                             echo "Build creating"
-                            openshift.selector("bc", templateName).startBuild())
+                            openshift.selector("bc", templateName).startBuild()
                             def builds = openshift.selector("bc", templateName).related('builds')
                             builds.untilEach(1) {
                                 return (it.object().status.phase == "Complete")
