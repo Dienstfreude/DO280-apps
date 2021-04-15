@@ -65,5 +65,49 @@ pipeline {
                 } // script
             } // steps
         } // stage
+        stage('build') {
+            steps {
+                script {
+                    openshift.withCluster() {
+                        openshift.withProject() {
+                            def builds = openshift.selector("bc", templateName).related('builds')
+                            builds.untilEach(1) {
+                                return (it.object().status.phase == "Complete")
+                                echo "Build created"
+                            }
+                        }
+                    }
+                } // script
+            } // steps
+        } // stage
+        stage('deploy') {
+            steps {
+                script {
+                    openshift.withCluster() {
+                        openshift.withProject() {
+                            def rm = openshift.selector("dc", templateName).rollout()
+                            openshift.selector("dc", templateName).related('pods').untilEach(1) {
+                                return (it.object().status.phase == "Running")
+                                echo "Pod Running"
+                            }
+                        }
+                    }
+                } // script
+            } // steps
+        } // stage
+        stage('tag') {
+            steps {
+                script {
+                    openshift.withCluster() {
+                        openshift.withProject() {
+                            // if everything else succeeded, tag the ${templateName}:latest image as ${templateName}-staging:latest
+                            // a pipeline build config for the staging environment can watch for the ${templateName}-staging:latest
+                            // image to change and then deploy it to the staging environment
+                            openshift.tag("${templateName}:latest", "${templateName}-staging:latest")
+                        }
+                    }
+                } // script
+            } // steps
+        } // stage
     } // stages
 } // pipeline
