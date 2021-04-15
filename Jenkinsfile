@@ -1,15 +1,3 @@
-pipeline {
-    agent {
-        docker { image 'node:14-alpine' }
-    }
-    stages {
-        stage('Test') {
-            steps {
-                sh 'node --version'
-            }
-        }
-    }
-}
 node {
   // Mark the code checkout 'stage'....
   def buildtag = "nginx-hello-world-${env.BUILD_NUMBER}"
