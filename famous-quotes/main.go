@@ -109,6 +109,7 @@ func setup() {
 		"Hell, if I could explain it to the average person, it wouldn't have been worth the Nobel prize.\n- Richard Feynman\n",
 		"Young man, in mathematics you don't understand things. You just get used to them.\n- John von Neumann\n",
 		"Those who can imagine anything, can create the impossible.\n- Alan Turing\n",
+		"DevOps and CI/CD Pipelines are good and helpful tools. \n- Arend Berg\n"
 	}
 
 	// Check if the databse connection is active
