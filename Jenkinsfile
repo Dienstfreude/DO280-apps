@@ -35,10 +35,15 @@ pipeline {
                     openshift.withCluster() {
                         openshift.withProject() {
                             // delete everything with this template label
-                            openshift.selector("all", [ template : templateName ]).delete()
+                            //openshift.selector("all", [ template : templateName ]).delete()
                             // delete any secrets with this template label
-                            if (openshift.selector("secrets", templateName).exists()) {
-                                openshift.selector("secrets", templateName).delete()
+                            if (openshift.selector("dc", templateName).exists()) {
+                                openshift.selector("dc", templateName).delete()
+                            if (openshift.selector("bc", templateName).exists()) {
+                                openshift.selector("bc", templateName).delete()
+                            if (openshift.selector("service", templateName).exists()) {
+                                openshift.selector("service", templateName).delete()
+                                                           
                             }
                         }
                     }
