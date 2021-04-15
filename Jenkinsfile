@@ -4,8 +4,6 @@ def buildtag = "nginx-hello-world-${env.BUILD_NUMBER}"
 pipeline {
   agent any
   // Mark the code checkout 'stage'....
-
-  stages {
     stage 'Stage Checkout' {
 
       // Checkout code from repository and update any submodules
@@ -34,5 +32,4 @@ pipeline {
   sh "ls"
   //sh "./gradlew crashlyticsUploadDistribution${flavor}Debug  -PBUILD_NUMBER=${env.BUILD_NUMBER}"
      }
-  } 
 }
