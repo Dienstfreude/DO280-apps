@@ -14,13 +14,6 @@ node {
   echo "My branch is: ${env.BRANCH_NAME}"
 
   sh "pwd"
-  sh "ls"
-  sh "cd hello-world-nginx"
-  def testImage = docker.build("test-image", "./hello-world-nginx")
-  sh "pwd"
-  testImage.inside {
-        sh 'make test'
-    }
  
   sh "ls"
 
