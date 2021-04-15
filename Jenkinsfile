@@ -35,7 +35,7 @@ pipeline {
                     openshift.withCluster() {
                         openshift.withProject() {
                             // create a new application from the templatePath
-                            openshift.newApp( 'https://github.com/Dienstfreude/DO280-apps', '--as-deployment-config', '--context-dir hello-world-nginx')
+                            openshift.newApp( '--name  hello-world-nginx', 'https://github.com/Dienstfreude/DO280-apps', '--as-deployment-config', '--context-dir hello-world-nginx')
                         }
                     }
                 } // script
