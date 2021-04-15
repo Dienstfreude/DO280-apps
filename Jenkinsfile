@@ -39,11 +39,12 @@ pipeline {
                             // delete any secrets with this template label
                             if (openshift.selector("dc", templateName).exists()) {
                                 openshift.selector("dc", templateName).delete()
+                            }
                             if (openshift.selector("bc", templateName).exists()) {
                                 openshift.selector("bc", templateName).delete()
+                            }
                             if (openshift.selector("service", templateName).exists()) {
-                                openshift.selector("service", templateName).delete()
-                                                           
+                                openshift.selector("service", templateName).delete()    
                             }
                         }
                     }
