@@ -17,7 +17,7 @@ node {
   sh "ls"
   sh "cd hello-world-nginx"
   sh "pwd"
-  docker.build "${buildtag}"
+ 
   sh "ls"
 
   //build your gradle flavor, passes the current build number as a parameter to gradle
